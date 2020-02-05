@@ -7,25 +7,25 @@ import pandas as pd
 class get_excel(View):
     template_name = 'excel.html'
     def get_excel(self,name,num):
-        path = os.getcwd()+"/check/excel"
-        file_list = os.listdir(path)
+        path = os.getcwd()+"/check/excel" #后去excel文件夹的绝对路径
+        file_list = os.listdir(path) #获取excel文件夹下所有的文件名
         position = []
         for index in range(len(file_list)):
             filesuffix = os.path.splitext(file_list[index])
             filesuffix = filesuffix[1]
-            if filesuffix == ".xlsx" or filesuffix == ".xls":
+            if filesuffix == ".xlsx" or filesuffix == ".xls": #仅支持xls和xlsx后缀的excel表格，csv不支持
                 position.append(index)
-        for index in position:
+        for index in position: #循环遍历所有的文件
             file_name = file_list[index]
             file_name = "./check/excel/"+file_name
-            df = pd.read_excel(file_name,encoding = 'gb18030')
-            df = df.fillna(0)
-            info = df[(df['姓名'] == name) & (df['学号'] == num)]
-            if info.empty == False:
+            df = pd.read_excel(file_name,encoding = 'gb18030') #读取excel表格文件中的数据
+            df = df.fillna(0) #缺失值用0来填补
+            info = df[(df['姓名'] == name) & (df['学号'] == num)] #查询信息
+            if info.empty == False: #判断是否查询到 
                 break
-        if info.empty == True:
+        if info.empty == True: #若查询不到则返回0
             return 0
-        else:
+        else: #输出到'excel.html'当中
             data = info.values[:,:]
             excel_data = []
             li = info.columns.tolist() 
@@ -51,8 +51,7 @@ class get_excel(View):
             else:
                 pass
         except:
-            print('1')
-            alert = "<script type='text/javascript'>alert('信息输入有误或参数非法!');location.href = ''</script>"
+            alert = "<script type='text/javascript'>alert('信息输入有误或参数非法!');location.href = ''</script>" #警示框
             return HttpResponse(alert)
         info = self.get_excel(name,num)
         if info == 0:
