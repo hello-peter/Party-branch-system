@@ -28,7 +28,7 @@ class get_excel(View):
         else:
             data = info.values[:,:]
             excel_data = []
-            li = info.columns.tolist() # 行名称
+            li = info.columns.tolist() 
             excel_data.append(li)
             for line in data:
                 ls = []
@@ -46,8 +46,12 @@ class get_excel(View):
         name = request.POST.get('name',None)
         num = request.POST.get('num',None)
         try:
-            num = int(num)
+            if isinstance(type(num),str) == True:
+                num = int(num)
+            else:
+                pass
         except:
+            print('1')
             alert = "<script type='text/javascript'>alert('信息输入有误或参数非法!');location.href = ''</script>"
             return HttpResponse(alert)
         info = self.get_excel(name,num)
