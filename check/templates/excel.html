@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="/static/excel.css">
+    </head>
+    <body>
+    <div>
+    <table border="0" cellpadding="3" cellspacing="1"  id = "td" >
+        <caption>查询结果</caption>
+        {% for line in excel_data%}
+            <tr bgcolor="#FFFFFF" >
+            {% for i in line %}
+                <td >{{i}}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href = ''><input type="submit" class="logbtn"  value="退出"> </a>
+    </div>
+    </body>
+</html>
