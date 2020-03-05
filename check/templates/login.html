@@ -2,34 +2,47 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>信工学院党支部</title>
+        <link rel="shortcut icon" type="image/x-icon" href="../static/favicon.ico"/>
         <link rel="stylesheet" href="/static/login.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+        <link rel="stylesheet" href = "../static/layui2/layui/css/layui.css">
+        <script src="../static/layui/layui/layui.js"></script>
     </head>
     <body>
+    <ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item"><a href="../"><i class="layui-icon layui-icon-user" style="font-size: 15px; color: #f2f2f2;"></i> 返回首页</a></li>
+    </li>
+    </ul>
 
         <form action="" class="login-form" method ="post">
         {% csrf_token %}
             <h1>信息查询</h1>
 
             <div class="txtb">
-                <input type="text" name = "name">
+                <input type="text" name = "name" required>
                 <span data-placeholder="姓名"></span>
             </div>
 
             <div class="txtb">
-                <input type="text" name = "num">
+                <input type="text" name = "num" required>
                 <span data-placeholder="学号"></span>
             </div>
 
             <input type="submit" class="logbtn" value="查询" >
 
             <div class="bottom-text">
-                信工学院党支部 <a href="#"></a>
+                信工学院党支部 <a href=""></a>
             </div> 
         </form>
 
         <script type="text/javascript" >
+        layui.use('element', function(){
+  var element = layui.element;
+  
+  //…
+});
+
             $(".txtb input").on("focus", function(){
                 $(this).addClass("focus");
             });

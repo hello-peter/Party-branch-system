@@ -20,5 +20,7 @@ sys.path.append('../check')
 from check import views as cv
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',cv.get_excel.as_view())
+    path('check/',cv.get_excel.as_view()),
+    path('',cv.open_index),
+    path('timer/',cv.open_timer)
 ]
