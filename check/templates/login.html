@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="/static/login.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
         <link rel="stylesheet" href = "../static/layui2/layui/css/layui.css">
-        <script src="../static/layui/layui/layui.js"></script>
+        <script src="../static/layui2/layui/layui.js"></script>
     </head>
     <body>
     <ul class="layui-nav" lay-filter="">
@@ -20,7 +20,7 @@
             <h1>信息查询</h1>
 
             <div class="txtb">
-                <input type="text" name = "name" required>
+                <input type="text" name = "name" id = 'name'required>
                 <span data-placeholder="姓名"></span>
             </div>
 
@@ -51,6 +51,10 @@
                 if($(this).val() == "")
                 $(this).removeClass("focus");
             });
+
+            window.onload = function(){
+	        document.getElementsByName('name')[0].focus();
+            }	
         </script>
 
     </body>
