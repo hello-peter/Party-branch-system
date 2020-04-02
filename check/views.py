@@ -42,6 +42,7 @@ class get_excel(View):
             
     def get(self,request):
         return render(request,'login.html')
+        
     def post(self,request):
         name = request.POST.get('name',None)
         num = request.POST.get('num',None)
