@@ -44,6 +44,7 @@ class get_excel(View):
         return render(request,'login.html')
         
     def post(self,request):
+        alert = "<script type='text/javascript'>alert('信息输入有误或参数非法!');location.href = ''</script>"
         name = request.POST.get('name',None)
         num = request.POST.get('num',None)
         try:
@@ -60,9 +61,11 @@ class get_excel(View):
             alert = "<script type='text/javascript'>alert('信息输入有误或参数非法!');location.href = ''</script>" #警示框
             return HttpResponse(alert)
         '''
-        info = self.get_excel(name,num)
+        try:
+            info = self.get_excel(name,num)
+        except:
+            return HttpResponse(alert)
         if info == 0:
-            alert = "<script type='text/javascript'>alert('信息输入有误或参数非法!');location.href = ''</script>"
             return HttpResponse(alert)
         else:
             return render(request,self.template_name,context = info) 
