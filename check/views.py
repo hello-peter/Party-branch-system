@@ -20,7 +20,7 @@ class get_excel(View):
             file_name = "./check/excel/"+file_name
             df = pd.read_excel(file_name,encoding = 'gb18030') #读取excel表格文件中的数据
             df = df.fillna(0) #缺失值用0来填补
-            info = df[(df['姓名'] == name) & (df['学号'] == num)] #查询信息
+            info = df[(df['姓名'] == name) & (df['查询码'] == num)] #查询信息
             if info.empty == False: #判断是否查询到 
                 break
         if info.empty == True: #若查询不到则返回0
@@ -75,3 +75,4 @@ def open_index(request):
 
 def open_timer(request):
     return render(request,'timer.html')
+

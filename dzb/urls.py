@@ -24,3 +24,4 @@ urlpatterns = [
     path('',cv.open_index),
     path('timer/',cv.open_timer)
 ]
+
