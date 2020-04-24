@@ -7,3 +7,6 @@ class BlogTypeLogfile(admin.ModelAdmin):
     list_per_page = 10    
     # 在后台页面显示的字段
     list_display = ('id', 'file', 'file_name', 'create_time', 'host_ip', 'comment', 'isanalyse')
+
+admin.site.register(teacher)
+admin.site.register(about_us)

@@ -125,3 +125,5 @@ STATICFILES_DIRS = (
 
 FILE_URL = "/excel/"  
 FILE_ROOT = os.path.join(BASE_DIR, FILE_URL)  # 文件目录绝对路径
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')

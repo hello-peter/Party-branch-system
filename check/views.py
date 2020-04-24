@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponse
 from django.views.generic import View
 # Create your views here.
+import check.models as models
 import os
 import pandas as pd
 
@@ -71,7 +72,17 @@ class get_excel(View):
             return render(request,self.template_name,context = info) 
 
 def open_index(request):
-    return render(request,'index.html')
+    teacher = models.teacher.objects.all()
+    teacher = teacher[0]
+    teacher_info = {
+                    'img' : teacher.img,
+                    'name' : teacher.name,
+                    'introduce' : teacher.introduce
+    }
+    abouts = models.about_us.objects.all()
+    about = abouts[0]
+    about_text = about.text
+    return render(request,'index.html',{'teacher':teacher,'about_us' : about_text})
 
 def open_timer(request):
     return render(request,'timer.html')

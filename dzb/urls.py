@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.staticfiles.urls import static
+from dzb import settings
 import sys
 sys.path.append('../check')
 from check import views as cv
@@ -23,5 +25,4 @@ urlpatterns = [
     path('check/',cv.get_excel.as_view()),
     path('',cv.open_index),
     path('timer/',cv.open_timer)
-]
-
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

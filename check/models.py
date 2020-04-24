@@ -26,3 +26,11 @@ def delete_upload_files(sender, instance, **kwargs):
     fname = os.path.join(settings.MEDIA_ROOT, str(files))
     if os.path.isfile(fname):
         os.remove(fname)
+
+class teacher(models.Model):
+    img = models.ImageField(upload_to='img')
+    name = models.CharField(max_length=20)
+    introduce = models.CharField(max_length=100)
+
+class about_us(models.Model):
+    text = models.CharField(max_length = 500)
