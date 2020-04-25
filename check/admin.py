@@ -10,3 +10,6 @@ class BlogTypeLogfile(admin.ModelAdmin):
 
 admin.site.register(teacher)
 admin.site.register(about_us)
+admin.site.register(activity)
+admin.site.register(missions)
+admin.site.register(students)

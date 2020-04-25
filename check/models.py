@@ -34,3 +34,19 @@ class teacher(models.Model):
 
 class about_us(models.Model):
     text = models.CharField(max_length = 500)
+
+
+class students(models.Model):
+    img = models.ImageField(upload_to='stu_img')
+    major_in = models.CharField(max_length = 30)
+    name = models.CharField(max_length = 30)
+    position = models.CharField(max_length = 20)
+
+class missions(models.Model):
+    dzb_name = models.CharField(max_length=20)
+    mission_name = models.CharField(max_length=100)
+    missions_principle = models.CharField(max_length=20)
+
+class activity(models.Model):
+    img = models.ImageField(upload_to='img')
+    introduce = models.CharField(max_length=100)

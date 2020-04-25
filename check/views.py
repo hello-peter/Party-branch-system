@@ -79,10 +79,29 @@ def open_index(request):
                     'name' : teacher.name,
                     'introduce' : teacher.introduce
     }
+
     abouts = models.about_us.objects.all()
     about = abouts[0]
     about_text = about.text
-    return render(request,'index.html',{'teacher':teacher,'about_us' : about_text})
+    stud_info = list()
+    students =  models.students.objects.all()
+    for i in students :
+        info = {'path' : i.img,'major_in' : i.major_in,'name' : i.name,'position' : i.position}
+        stud_info.append(info)
+    missions_list = list()
+    missions_list.append( ('支部', '主要负责任务', '负责人'))
+    missions =  models.missions.objects.all()
+    for i in missions:
+        info = (i.dzb_name,i.mission_name,i.missions_principle)
+        missions_list.append(info)
+    activity = models.activity.objects.all()
+    activity = activity[0]
+    activity_info = {
+                    'img' : activity.img,
+                    'introduce' : activity.introduce
+    }
+    return render(request,'index.html',context = {'teacher':teacher,'about_us' : about_text,'stud_info' : stud_info,'missions_list' : missions_list,'activity_info' : activity_info})
+
 
 def open_timer(request):
     return render(request,'timer.html')
