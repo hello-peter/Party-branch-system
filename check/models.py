@@ -11,7 +11,7 @@ class User(models.Model):
     u_age=models.IntegerField(default=18)
 
 class Logfile(models.Model):
-    file = models.FileField(u'文件', upload_to='check/excel/', null=False, blank=False)
+    file = models.FileField(u'文件', upload_to='excel/', null=False, blank=False)
     file_name = models.CharField(u'文件名称', max_length=50, default='logfile_name', null=False)
     create_time = models.DateTimeField(u'创建时间', null=False)
     host_ip = models.CharField(u'主机IP', max_length=50, default='127.0.0.1', null=False)

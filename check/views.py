@@ -8,7 +8,7 @@ import pandas as pd
 class get_excel(View):
     template_name = 'excel.html'
     def get_excel(self,name,num):
-        path = os.getcwd()+"/check/excel" #后去excel文件夹的绝对路径
+        path = os.getcwd()+"/media/excel" #后去excel文件夹的绝对路径
         file_list = os.listdir(path) #获取excel文件夹下所有的文件名
         position = []
         filenames = []
@@ -23,7 +23,7 @@ class get_excel(View):
         for index in position: #循环遍历所有的文件
             file_name = file_list[index]
             headname = str(filenames[index])
-            file_name = "./check/excel/"+file_name
+            file_name = "./media/excel/"+file_name
             df = pd.read_excel(file_name,encoding = 'gb18030') #读取excel表格文件中的数据
             df = df.fillna(0) #缺失值用0来填补
             info = df[(df['姓名'] == name) & (df['查询码'] == num)] #查询信息
