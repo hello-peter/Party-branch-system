@@ -8,9 +8,10 @@
     </head>
     <body>
     <div>
+    {% for index in info%}
     <table border="0" cellpadding="3" cellspacing="1"  id = "td" >
-        <caption>查询结果</caption>
-        {% for line in excel_data%}
+        <caption>{{index.filename}}</caption>
+        {% for line in index.excel_data%}
             <tr bgcolor="#FFFFFF" >
             {% for i in line %}
                 <td >{{i}}</td>
@@ -19,6 +20,7 @@
         {% endfor %}
     </table>
     <br>
+    {%endfor%}
     <a href = ''><input type="submit" class="logbtn"  value="退出"> </a>
     </div>
     </body>
