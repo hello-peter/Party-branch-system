@@ -17,6 +17,9 @@ class Logfile(models.Model):
     host_ip = models.CharField(u'主机IP', max_length=50, default='127.0.0.1', null=False)
     comment = models.CharField(u'备注说明', max_length=100, null=False)
     isanalyse = models.BooleanField(u'是否分析', default='0', null=False)
+    class Meta:
+        verbose_name = '查询系统文件'
+        verbose_name_plural = verbose_name
 
 @receiver(post_delete, sender=Logfile)
 def delete_upload_files(sender, instance, **kwargs):
@@ -28,25 +31,39 @@ def delete_upload_files(sender, instance, **kwargs):
         os.remove(fname)
 
 class teacher(models.Model):
-    img = models.ImageField(upload_to='img')
-    name = models.CharField(max_length=20)
-    introduce = models.CharField(max_length=100)
+    img = models.ImageField(upload_to='img' ,verbose_name="党建指导老师图片")
+    name = models.CharField(max_length=20,verbose_name="党建指导老师姓名")
+    introduce = models.CharField(max_length=100,verbose_name="党建指导老师介绍")
+    class Meta:
+        verbose_name = '党建指导老师'
+        verbose_name_plural = verbose_name
 
 class about_us(models.Model):
-    text = models.CharField(max_length = 500)
-
+    text = models.CharField(max_length = 500,verbose_name="关于我们")
+    class Meta:
+        verbose_name = '关于我们'
+        verbose_name_plural = verbose_name
 
 class students(models.Model):
-    img = models.ImageField(upload_to='stu_img')
-    major_in = models.CharField(max_length = 30)
-    name = models.CharField(max_length = 30)
-    position = models.CharField(max_length = 20)
+    img = models.ImageField(upload_to='stu_img',verbose_name="学生图片")
+    major_in = models.CharField(max_length = 30,verbose_name="专业")
+    name = models.CharField(max_length = 30,verbose_name="姓名")
+    position = models.CharField(max_length = 20,verbose_name="职位")
+    class Meta:
+        verbose_name = '支委'
+        verbose_name_plural = verbose_name
 
 class missions(models.Model):
-    dzb_name = models.CharField(max_length=20)
-    mission_name = models.CharField(max_length=100)
-    missions_principle = models.CharField(max_length=20)
+    dzb_name = models.CharField(max_length=20,verbose_name="支部名称")
+    mission_name = models.CharField(max_length=100,verbose_name="任务")
+    missions_principle = models.CharField(max_length=20,verbose_name="负责人")
+    class Meta:
+        verbose_name = '负责任务'
+        verbose_name_plural = verbose_name
 
 class activity(models.Model):
-    img = models.ImageField(upload_to='img')
-    introduce = models.CharField(max_length=100)
+    img = models.ImageField(upload_to='img,,verbose_name="组织生活照片"')
+    introduce = models.CharField(max_length=100,verbose_name="组织生活介绍")
+    class Meta:
+        verbose_name = '组织生活'
+        verbose_name_plural = verbose_name

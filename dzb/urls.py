@@ -22,7 +22,7 @@ sys.path.append('../check')
 from check import views as cv
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('check/',cv.get_excel.as_view()),
+    path('query/',cv.get_excel.as_view()),
     path('',cv.open_index),
     path('timer/',cv.open_timer)
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
