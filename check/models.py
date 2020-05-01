@@ -30,6 +30,23 @@ def delete_upload_files(sender, instance, **kwargs):
     if os.path.isfile(fname):
         os.remove(fname)
 
+class downloadsfile(models.Model):
+    file = models.FileField(u'文件', upload_to='downloads/', null=False, blank=False)
+    file_name = models.CharField(u'文件名称', max_length=50, default='文件名', null=False)
+    create_time = models.DateTimeField(u'创建时间', null=False)
+    class Meta:
+        verbose_name = '下载中心文件'
+        verbose_name_plural = verbose_name
+
+@receiver(post_delete, sender = downloadsfile)
+def delete_upload_files(sender, instance, **kwargs):
+    files = getattr(instance, 'file')
+    if not files:
+        return
+    fname = os.path.join(settings.MEDIA_ROOT, str(files))
+    if os.path.isfile(fname):
+        os.remove(fname)
+
 class teacher(models.Model):
     img = models.ImageField(upload_to='img' ,verbose_name="党建指导老师图片")
     name = models.CharField(max_length=20,verbose_name="党建指导老师姓名")

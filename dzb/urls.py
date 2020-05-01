@@ -24,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('query/',cv.get_excel.as_view()),
     path('',cv.open_index),
-    path('timer/',cv.open_timer)
+    path('timer/',cv.open_timer),
+    path('downloads/',cv.downloads_center)
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

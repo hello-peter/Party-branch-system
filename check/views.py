@@ -4,6 +4,7 @@ from django.views.generic import View
 import check.models as models
 import os
 import pandas as pd
+from django.core.paginator import EmptyPage, InvalidPage, PageNotAnInteger, Paginator
 
 class get_excel(View):
     template_name = 'excel.html'
@@ -117,4 +118,31 @@ def open_index(request):
 
 def open_timer(request):
     return render(request,'timer.html')
+
+def downloads_center(request):
+    info = models.downloadsfile.objects.all()
+    all_info = list()
+    for ob in info:
+        information = {'file_path' : ob.file,'file_name' : ob.file_name,'create_time' : ob.create_time}
+        all_info.append(information)
+    paginator = Paginator(all_info,20)
+    if request.method == "GET":
+        # 获取 url 后面的 page 参数的值, 首页不显示 page 参数, 默认值是 1
+        page = request.GET.get('page')
+        if page == None:
+            page = 1
+        try:
+            downloads = paginator.page(page)
+        # todo: 注意捕获异常
+        except PageNotAnInteger:
+            # 如果请求的页数不是整数, 返回第一页。
+            downloads = paginator.page(1)
+        except InvalidPage:
+            # 如果请求的页数不存在, 重定向页面
+            return HttpResponse('找不到页面的内容')
+        except EmptyPage:
+            # 如果请求的页数不在合法的页数范围内，返回结果的最后一页。
+            downloads = paginator.page(paginator.num_pages)
+        template_view = 'downloads.html'
+        return render(request, template_view, {'downloads': downloads})
 
