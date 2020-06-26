@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -37,6 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_ajax',
+    'ckeditor',  # 富文本编辑器
+    'ckeditor_uploader',  # 富文本编辑器上传图片模块
     'check'
 ]
 
@@ -127,3 +129,30 @@ FILE_URL = "/excel/"
 FILE_ROOT = os.path.join(BASE_DIR, FILE_URL)  # 文件目录绝对路径
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+CKEDITOR_UPLOAD_PATH = "article_uploads_flies/"
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+# ckeditor
+CKEDITOR_CONFIGS = {
+    # 配置名是default时，django-ckeditor默认使用这个配置
+    'default': {
+        # 使用简体中文
+        'language': 'zh-cn',
+        # 编辑器的宽高请根据你的页面自行设置
+        # 'width': '730px',
+        'height': '350px',
+        'image_previewText': ' ',
+        # 'tabSpaces': 4,
+         'toolbar': 'full',  # 完整工具条
+        #'toolbar': 'custom',  # 常用工具条
+        # 添加按钮在这里
+        # 'toolbar_Custom': [
+        #     ['Bold', 'Italic', 'Underline', 'Format', 'RemoveFormat'],
+        #     ['NumberedList', 'BulletedList'],
+        #     ['Blockquote', 'CodeSnippet'],
+        #     ['Image', 'Link', 'Unlink'],
+        #     ['Maximize']
+        # ],
+        # 插件
+        'extraPlugins': ','.join(['codesnippet', 'uploadimage', 'widget', 'lineutils', ]),
+    }
+}

@@ -18,13 +18,16 @@
     
     <!-- Font awesome css -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/static/custom_style.css">
     <link rel="stylesheet" href="/static/responsive.css">
-
+    <link rel="stylesheet" href="/static/assistant.css">
+    <link rel="stylesheet" href="/static/css/contact.css">
+     <link rel="stylesheet" href="/static/css/section.css">
      <!-- Owl carousel 2 css -->
-    <link rel="stylesheet" href="/static/css/owl.carousel.css">
+    <link rel="stylesheet" href="/static/owl.carousel.css">
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,6 +35,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
     <style type="text/css">
 table { 
       table-layout: fixed !important; 
@@ -78,7 +82,15 @@ td,th {
     .block {
   text-align: center;
 }
-
+.assis_img{
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+}
+.assis_intro{
+    color : white;
+    text-align: center; 
+}
 </style>
 <script>
 (function(){
@@ -93,6 +105,42 @@ td,th {
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
+function siteTime(){
+window.setTimeout("siteTime()", 1000);
+var seconds = 1000
+var minutes = seconds * 60
+var hours = minutes * 60
+var days = hours * 24
+var years = days * 365
+ 
+var today = new Date()
+var todayYear = today.getFullYear()
+var todayMonth = today.getMonth()
+var todayDate = today.getDate()
+var todayHour = today.getHours()
+var todayMinute = today.getMinutes()
+var todaySecond = today.getSeconds()
+ 
+/* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+year - 作为date对象的年份，为4位年份值
+month - 0-11之间的整数，做为date对象的月份
+day - 1-31之间的整数，做为date对象的天数
+hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+minutes - 0-59之间的整数，做为date对象的分钟数
+seconds - 0-59之间的整数，做为date对象的秒数
+microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+var t1 = Date.UTC(2020,0,14,11,19,00)
+var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond)
+var diff = t2-t1
+ 
+var diffYears = Math.floor(diff/years)
+var diffDays = Math.floor((diff/days)-diffYears*365)
+var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours)
+var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes)
+var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds)
+document.getElementById("sitetime").innerHTML=" 本站已运行"+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒"
+}
+siteTime()
 </script>
 
     </head>
@@ -121,16 +169,16 @@ td,th {
                 <div class="col-md-9">
                          
 
-                    <div class="navbar-collapse collapse">
+                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right text-uppercase">
-                        <li class="layui-nav-item"><a href="timer/">计时系统</a></li>
-                        <li class="layui-nav-item"><a href="query/">查询系统</a></li>
-                        <li class="layui-nav-item"><a href="http://zzb.cdu.edu.cn/">成大党委组织部</a></li>
+                        <li class="layui-nav-item"><a href= {% url 'index' %}>首页</a></li>
+                        <li class="layui-nav-item"><a href= {% url 'timer' %}>计时系统</a></li>
+                        <li class="layui-nav-item"><a href = {% url 'query' %}>查询系统</a></li>
                         <li class="layui-nav-item"><a href="https://weibo.com/u/6394953874?nick=%E6%88%90%E5%A4%A7%E4%BF%A1%E5%B7%A5%E6%96%B0%E9%9D%92%E5%B9%B4&is_hot=1">微博</a></li>
                         <li class="layui-nav-item"><a href="http://xgxy.cdu.edu.cn/p/42/">党建新闻</a></li>
-                        <li class="layui-nav-item"><a href="downloads">下载中心</a></li>
+                        <li class="layui-nav-item"><a href = {% url 'info' %}>信息公开</a></li>
                         </ul>
-                    </div>                    
+                    </div>                       
                 </div>
             </div>
             
@@ -145,7 +193,7 @@ td,th {
                 <div class="col-md-6 col-md-offset-3">
                     <div class="slide-text-wrapper">
                     <div class="slide-text text-center">
-                        <h1 class="typewrite" data-period="2000" data-type='[ "成都大学信工科学与工程学院学生党支部", "Student party branch, school of information science and engineering, chengdu university of the communist party of China"]'>
+                        <h1 class="typewrite" data-period="2000" data-type='[ "成都大学信息科学与工程学院学生党支部", "不忘初心、牢记使命"]'>
                             <span class="wrap"></span>
                         </h1>           
                         <div class="scroll-to-bottom">
@@ -240,7 +288,7 @@ td,th {
                                         <p class="author-name">{{item.name}} <span>{{item.position}}</span></p>
                                     </div>
                                 </div>
-                                {% endif%}
+                                {% endif %}
                             {% endfor %}
                         </div>
                         <a class="left tc-control" href="#testimonial-list" role="button" data-slide="prev">
@@ -270,22 +318,77 @@ td,th {
                 </div>
             </div>
         </div>
-
     </section> <!-- end footer top -->
 
+<section>
+    <div class="images glide">
+        <div id="testimonial-list" class="carousel slide text-center" data-ride="carousel">
+                        <br>
+                        <h3 style = "color : white">党建服务小组</h3>
+        </div>
+      <div class="glide__track" data-glide-el="track">
+    
+        <ul class="glide__slides">
+        {%for info in assis_info%}
+          <li class="glide__slide">
+            <div>
+                <img src="/media/{{info.assis_img}}" alt="{{info.assis_name}}" class = "assis_img" />
+                <p class = 'assis_intro'>{{info.assis_major}} {{info.assis_name}}</p>
+                <br>
+           <div>
+          </li>
+        {%endfor%}
+        </ul>
+      </div>
+
+      <div class="glide__arrows" data-glide-el="controls">
+        <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><i class="fas fa-arrow-left"></i></button>
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+    </section>
+
+<section>
+    <div class="contact-section" >
+      <div class="inner-width" >
+                <h1>若您有什么意见或建议，请向我们留言!</h1>
+                <input type="text" class="name" id = "name" placeholder="您的名字(必填)">
+                <input type="email" class="email" id = "num" placeholder="您的邮箱/电话号码(必填)">
+                <textarea rows="1" placeholder="留言内容" id = "message" class="message"></textarea>
+                <button id = "contact">点击提交</button>
+      </div>
+    </div>
+        </section>
+        <section id = "section_block">
+        <h2>下属部门/组织：</h2>
+        <div class="section_info">
+            {% for index in section_info_list %}
+                <a href = "{% url 'section_info' %}?id={{ index.id }}"><button class="sections sections1">{{ index.name }}</button></a>
+                
+            {% endfor %}
+            
+                
+        </div>
+    </section>
        <section class="footer-top section-padding block">
         <div class = 'centered'>
-                    <p>Copyright © 2020 成都大学信息科学与工程学院学生党支部 版权所有</p>
-                    <p><a href = 'https://github.com/hello-peter/Party-branch-system'>GitHub</a></p>
-                    <p>Bug 报告：1119871893@qq.com</p>
+                    <p>友情链接：<a href="http://zzb.cdu.edu.cn/" style="color : white">成都大学党委组织部</a>｜<a href="http://www.12371.cn/" style="color : white">共产党员网</a>｜<a href="https://www.xuexi.cn/" style="color : white">学习强国</a>｜<a href="http://www.wenming.cn/" style="color : white">中国文明网</a></p>
+					<p id="sitetime"></p>
+					<p>Copyright © 2020 成都大学信息科学与工程学院学生党支部 版权所有</p>
         </div>
     </section> <!-- end footer top -->
     
 
     
-    <!-- jQuery form CDN -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
+
     
+    <!-- jQuery form CDN -->
+    
+    
+   
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="/static/js/ajaxs.js">
+    <script src="https://code.jquery.com/jquery.min.js"></script>
     <!-- Bootstrap form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     
@@ -303,5 +406,27 @@ td,th {
     
     <!-- jQuery main script -->
     <script src="/static/js/main.js"></script>
+    
+    <script src="/static/glide.min.js" charset="utf-8"></script>
+       <script>
+       new Glide(".images",{
+        type: 'carousel',
+        perView: 5,
+        focusAt: 'center',
+        gap: 40,
+        breakpoints: {
+          1200:{
+            perView: 3
+          },
+          800:{
+            perView: 2
+          }
+        }
+      }).mount();
+      
+      $('#contact').click(function() {
+    ajaxs("{{ csrf_token }}", "{% url 'contact' %}");
+    })
+    </script>
   </body>
 </html>

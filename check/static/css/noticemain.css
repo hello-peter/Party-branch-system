@@ -1,0 +1,170 @@
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.navbar-brand {
+    background-image: url(../img/logo.png);
+    width: 50px;
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+img, .side-bar .list-group-item, .side-bar-card {
+    border-radius: 3px;
+}
+
+.side-bar .list-group-item {
+    border: 0;
+    margin-bottom: 5px;
+}
+
+.side-bar .list-group-item.active {
+    background-color: #EA0C3C;
+}
+
+.news-list-item .title {
+    display: block;
+    color: #444444;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    line-height: 1.5em;
+}
+
+.news-list-item .title:hover {
+    color: #337ab7;
+}
+
+.news-list-item .info {
+    color: #888888;
+}
+
+.avatar img {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.news-list-item {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.news-list-item:first-child {
+    padding-top: 0;
+}
+
+.side-bar-card {
+    background: rgba(0, 0, 0, 0.05);
+    margin-top: 15px;
+    padding: 10px 0;
+}
+
+.side-bar-card.flag {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.side-bar-card .text-lg {
+    font-size: 150%;
+}
+
+.side-bar-card .card-title,
+.side-bar-card .card-body .list .item {
+    padding: 10px 15px;
+}
+
+.side-bar-card .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.side-bar-card .card-body .list .item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.card-body .list .item .title {
+    padding-bottom: 5px;
+}
+
+.card-body .list .item .desc {
+    color: #999999;
+}
+
+.news-title {
+    line-height: 1.3em;
+}
+
+.news-status {
+    color: #999999;
+}
+
+.news-status .label {
+    opacity: 0.8;
+}
+
+.news-content {
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.5em;
+}
+
+.news-content img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.no-padding-h {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.footer {
+    margin-top: 20px;
+    padding: 50px 0;
+    text-align: center;
+    color: #999999;
+}
+
+.container-small {
+    max-width: 500px;
+}
+
+.btn-primary {
+    background-color: #EA0C3C;
+    border-color: #db0d3a;
+}
+
+.btn-primary:hover {
+    background-color: #d50c37;
+    border-color: #d50c37;
+}
+
+/*当toggle-checkbox勾选时，它下面的兄弟的样式，!important使优先级最高*/
+#toggle-checkbox:checked ~ div {
+    display: block !important;
+}
+
+#toggle-label {
+    display: none;
+    position: absolute;
+    right: 15px;
+    color: #666666;
+    top: 13px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#toggle-label:hover {
+    color: #333333;
+}

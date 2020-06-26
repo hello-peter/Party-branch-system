@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+         <meta name="description = " content="成都大学信息科学与工程学院学生党支部" />
+        <meta name="google-site-verification" content="z9dGrdChaZILafF_S0nS2-OftozFWJYFAHIIAdZ_V88" />
+        <title>信工学院党支部</title>
+        <link rel="shortcut icon" type="image/x-icon" href="../static/favicon.ico"/>
+        <link rel="stylesheet" href="/static/login.css">
+         
+        <!-- Google Fonts -->
+        <link rel="shortcut icon" type="image/x-icon" href="../static/favicon.ico"/>
+        <link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+        <!-- Bootstrap css form cdn -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        
+        <!-- Font awesome css -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/static/custom_style.css">
+        <link rel="stylesheet" href="/static/responsive.css">
+        <link rel="stylesheet" href="/static/assistant.css">
+
+        <!-- Owl carousel 2 css -->
+        <link rel="stylesheet" href="/static/css/owl.carousel.css">
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+        <link rel="stylesheet" href = "../static/layui2/layui/css/layui.css">
+        <script src="../static/layui2/layui/layui.js"></script>
+        <script src="http://libs.baidu.com/backbone/0.9.2/backbone-min.js"></script>
+        <script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</head>
+
+    <body>
+        <form  class="login-form">
+        {% csrf_token %}
+            <h1>信息查询</h1>
+
+            <div class="txtb">
+                <input type="text" name = "names" id = 'name'required>
+                <span data-placeholder="姓名"></span>
+            </div>
+
+            <div class="txtb">
+                <input type="text" name = "num" required>
+                <span data-placeholder="查询码"></span>
+            </div>
+
+            <input type="button" class="logbtn" id = "logbtn" value="查询">
+
+            <div class="bottom-text">
+                信工学院党支部 <a href=""></a>
+            </div> 
+        </form>
+
+
+        <script type="text/javascript" >
+        layui.use('element', function(){
+  var element = layui.element;
+  
+  //…
+});
+
+            $(".txtb input").on("focus", function(){
+                $(this).addClass("focus");
+            });
+
+            $(".txtb input").on("blur", function(){
+                if($(this).val() == "")
+                $(this).removeClass("focus");
+            });
+
+            window.onload = function(){
+	        document.getElementsByName('name')[0].focus();
+            }	
+            
+
+    function ajaxs(CSRF, URL) {
+    var name = $.trim($('#name').val());
+    $.ajaxSetup({
+        data: {
+            csrfmiddlewaretoken: CSRF
+        }
+    });
+    $.ajax({
+        type: 'post',
+        url: URL,
+        data: {
+            'name': name,
+        },
+        dataType: 'json',
+        success: function(data) {
+            alert("成功");
+        },
+        error: function(XMLHttpRequest) {
+            var _code = XMLHttpRequest.status;
+            if (_code == 404) {
+                var error_text = '镜像仓库没有查询到相关信息，请检查镜像名称后重试！';
+            } else if (_code == 500) {
+                var error_text = '请求超时，请稍后重试！'
+            } else {
+                var error_text = '未知错误...'
+            }
+            var newhtml = '<div class="my-2">' + error_text + '</div>';
+            $('.push-result').html(newhtml);
+        }
+    })
+}
+$('#logbtn').click(function() {
+    ajaxs("{{ csrf_token }}", "{% url 'infoajax' %}");
+})
+        </script>
+
+    </body>
+</html>

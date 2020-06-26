@@ -1,0 +1,32 @@
+#section_block{
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f1f1;
+}
+
+.section_info{
+  perspective: 320px;
+}
+
+.sections{
+  display: block;
+  margin: 40px 0;
+  width: 240px;
+  height: 80px;
+  border: none;
+  background-color: #e15f41;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  transition: .3s linear;
+}
+
+.sections1:hover{
+  transform: rotateX(15deg);
+  box-shadow: 0 15px 15px #e15f4190;
+}
+
